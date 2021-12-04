@@ -1,0 +1,121 @@
+#footer {
+    .img_box {
+        width: 100%;
+        height: 0.67rem;
+        background: #242230;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {}
+    }
+
+    .introduce {
+        width: 100%;
+        height: 1.99rem;
+        background: #161521;
+        .logo_menu {
+            padding: 0.69rem 0.83rem 0 0.83rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .logo {
+                width: 0.7rem;
+                height: 0.7rem;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .menu {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .every_menu {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    >div {
+                        font-size: 0.11rem;
+                        font-family: Gilroy-Medium-☞, Gilroy-Medium;
+                        font-weight: normal;
+                        color: #FFFFFF;
+                        line-height: 0.13rem;
+                        margin-left: 0.3rem;
+                    }
+                }
+
+                .menu_url {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-left: 0.67rem;
+                    position: relative;
+
+                    >div {
+                        width: 0.25rem;
+                        height: 0.25rem;
+                        background: #2F2D3C;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-left: 0.06rem;
+                        font-size: 0.1rem;
+                        font-family: Gilroy-Medium-☞, Gilroy-Medium;
+                        font-weight: normal;
+                        color: #FFFFFF;
+                        line-height: 0.11rem;
+                        transition: all 0.5s ease;
+
+                        >span {
+                            margin-right: 0.16rem;
+                            display: none;
+                            opacity: 0;
+                            transition: all 0.5s ease;
+                        }
+
+                        img {}
+                    }
+
+                    >div:hover {
+                        width: 0.75rem;
+                        border: 0.01rem solid;
+                        border-image: linear-gradient(-90deg, #21D4FD, #B721FF)1 8 1;
+
+                        >span {
+                            display: inline;
+                            animation: changeShow 0.5s forwards;
+                        }
+
+                        @keyframes changeShow {
+                            0% {
+                                opacity: 0
+                            }
+
+                            100% {
+                                opacity: 1
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+        .year {
+            font-size: 0.1rem;
+            font-family: Gilroy-Regular-☞, Gilroy-Regular;
+            font-weight: normal;
+            color: #727695;
+            line-height: 0.11rem;
+            padding: 0rem 0rem 0.17rem 1rem;
+        }
+    }
+
+    
+
+}
