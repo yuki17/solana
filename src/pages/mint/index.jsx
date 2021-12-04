@@ -16,9 +16,14 @@ import util from "utils"
 // import { util } from 'echarts';
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
 const { Option } = Select;
+const network = "devnet"
+var cluster = ""
+if (network=="devnet") {
+  cluster="?cluster=devnet"
+}
 const connection = new web3.Connection(
   // web3.clusterApiUrl('mainnet-beta'),
-  web3.clusterApiUrl('devnet'),
+  web3.clusterApiUrl(network),
   'confirmed',
 );
 const mapStateToProps = (state) => {
@@ -276,24 +281,25 @@ class Mint extends Component {
     if (exist) {
       let fromPubkey = await this.openPhantomGetPublicKey()
 
+      console.log('that.state.myInfo.wallet', that.state.myInfo.wallet)
       let toPubkey = new web3.PublicKey(that.state.myInfo.wallet)
-      let newPub = new web3.PublicKey(fromPubkey)
+      // let newPub = new web3.PublicKey(fromPubkey)
 
       let recentBlockhash = (await connection.getRecentBlockhash()).blockhash
       let transaction = new web3.Transaction().add(
         web3.SystemProgram.transfer({
-          fromPubkey: newPub,
+          fromPubkey: fromPubkey,
           toPubkey: toPubkey,
-          lamports: (that.state.solStr * 1000000000), // 1 SOL
+          lamports: 100000000, // 1 SOL
 
         })
       );
-      console.log({
-        fromPubkey: newPub,
-        toPubkey: toPubkey,
-        lamports: (that.state.solStr * 1000000000), // 1 SOL
+      // console.log({
+      //   fromPubkey: newPub,
+      //   toPubkey: toPubkey,
+      //   lamports: (that.state.solStr * 1000000000), // 1 SOL
 
-      })
+      // })
       transaction.feePayer = fromPubkey // 手续费 0.000005 SOL
       transaction.recentBlockhash = recentBlockhash
       try {
@@ -303,7 +309,7 @@ class Mint extends Component {
             message: bs58.encode(transaction.serializeMessage()),
           },
         });
-        console.log(`signature: https://solscan.io/tx/${signature}`);
+        console.log(`signature: https://solscan.io/tx/${signature}${cluster}`);
         await that.getBalance(fromPubkey.publicKey)
         // await this.getBalance(fromPubkey)
         await that.getBalance(toPubkey)

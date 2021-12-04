@@ -1,3 +1,4 @@
 node_modules
 node_modules
 build
+src/pages/mint/index.jsx
